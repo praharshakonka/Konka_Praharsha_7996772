@@ -1,0 +1,38 @@
+body{
+    font-family: sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+header{
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+h1{
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+section{
+    background-color: white;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 10px;
+}
+h2{
+    font-size: 28px;
+    font-style: bold;
+    font-weight: 600;
+    color: darkgreen;
+}
+p{
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: justify;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    color: #333333;
+}

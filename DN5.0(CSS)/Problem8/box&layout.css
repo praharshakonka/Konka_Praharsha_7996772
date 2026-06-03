@@ -1,0 +1,35 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+h1{
+    text-align: center;
+    color: darkblue;
+}
+.eventCard{
+    background-color: white;
+    border: 3px solid darkblue;
+    padding: 20px;
+    margin: 30px;
+    border-radius: 10px;
+}
+input{
+    padding: 10px;
+    border: 2px solid gray;
+}
+input:focus{
+    outline: 3px solid orange;
+}
+.hiddenBox{
+    visibility: hidden;
+    background-color: lightblue;
+    padding: 15px;
+    margin: 20px;
+}
+.noneBox{
+    display: none;
+    background-color: pink;
+    padding: 15px;
+    margin: 20px;
+}
