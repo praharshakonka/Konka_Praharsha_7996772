@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Video Invite</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f7ff;
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+    }
+
+    .container {
+        width: 500px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    video {
+        width: 100%;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+
+    #status {
+        margin-top: 10px;
+        font-weight: bold;
+        color: green;
+    }
+
+    .note {
+        font-size: 13px;
+        color: gray;
+        margin-top: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Event Promo Video</h2>
+
+    <!-- Video Element -->
+    <video id="eventVideo"
+           controls
+           oncanplay="videoReady()">
+        <source src="C:\Users\praha\OneDrive\Desktop\Event Promo Video.mp4" type="video/mp4">
+        
+    </video>
+
+    <!-- Status message -->
+    <div id="status"></div>
+
+    <div class="note">
+         Try closing or refreshing the page to see warning message
+    </div>
+</div>
+
+<script>
+    // oncanplay event
+    function videoReady() {
+        document.getElementById("status").textContent =
+            " Video ready to play!";
+    }
+
+    // onbeforeunload warning
+    let formDirty = true; // assume user hasn't finished
+
+    window.onbeforeunload = function (e) {
+        if (formDirty) {
+            e.preventDefault();
+            e.returnValue = "You have not finished viewing the event page!";
+        }
+    };
+
+    // If video starts playing, we can mark progress (optional improvement)
+    document.getElementById("eventVideo").addEventListener("play", function () {
+        formDirty = false; // user interacted
+    });
+</script>
+
+</body>
+</html>

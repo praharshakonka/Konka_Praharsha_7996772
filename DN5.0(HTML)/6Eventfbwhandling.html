@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Event Feedback with Event Handling</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        .container{
+            width: 750px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        h2{
+            text-align: center;
+            color: darkblue;
+        }
+
+        label{
+            font-weight: bold;
+        }
+
+        input, select, textarea{
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button{
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover{
+            background-color: darkblue;
+        }
+
+        #phoneMsg{
+            font-weight: bold;
+        }
+
+        #fee{
+            color: green;
+            font-weight: bold;
+        }
+
+        #charCount{
+            color: purple;
+            font-weight: bold;
+        }
+
+        /* Gallery Images */
+
+        .gallery{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .gallery img{
+            width: 180px;
+            height: 130px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.4s;
+            border: 2px solid #ccc;
+        }
+
+        /* Enlarged Image */
+
+        .zoom{
+            transform: scale(1.8);
+            z-index: 10;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Community Event Feedback Form</h2>
+
+    <!-- Phone Number -->
+
+    <label>Phone Number:</label>
+
+    <input type="text"
+           id="phone"
+           placeholder="Enter 10-digit phone number"
+           onblur="validatePhone()">
+
+    <p id="phoneMsg"></p>
+
+    <!-- Event Dropdown -->
+
+    <label>Select Event:</label>
+
+    <select id="eventSelect"
+            onchange="showFee()">
+
+        <option value="">
+            -- Select Event --
+        </option>
+
+        <option value="100">
+            Clean-Up Drive
+        </option>
+
+        <option value="200">
+            Tree Plantation
+        </option>
+
+        <option value="150">
+            Health Camp
+        </option>
+
+        <option value="150">
+            Blood Donation
+        </option>
+
+        <option value="250">
+            Sports Meet
+        </option>
+
+        <option value="300">
+            Cultural Fest
+        </option>
+
+    </select>
+
+    <p id="fee"></p>
+
+    <!-- Feedback -->
+
+    <label>Feedback:</label>
+
+    <textarea id="feedback"
+              rows="5"
+              placeholder="Enter your feedback..."
+              onkeyup="countCharacters()"></textarea>
+
+    <p id="charCount">
+        Characters: 0
+    </p>
+
+    <!-- Multiple Images -->
+
+    <h3>
+        Double Click Any Image to Enlarge
+    </h3>
+
+    <div class="gallery">
+
+        <img src="C:\Users\praha\OneDrive\Desktop\DN5.0(HTML)\event1.jpg"
+             ondblclick="zoomImage(this)">
+
+        <img src="C:\Users\praha\OneDrive\Desktop\DN5.0(HTML)\event2.jpg"
+             ondblclick="zoomImage(this)">
+
+        <img src="C:\Users\praha\OneDrive\Desktop\DN5.0(HTML)\event3.jpg"
+             ondblclick="zoomImage(this)">
+
+        <img src="C:\Users\praha\OneDrive\Desktop\DN5.0(HTML)\event4.jpg"
+             ondblclick="zoomImage(this)">
+
+        <img src="C:\Users\praha\OneDrive\Desktop\DN5.0(HTML)\event5.jpg"
+             ondblclick="zoomImage(this)">
+
+        <img src="C:\Users\praha\OneDrive\Desktop\DN5.0(HTML)\event6.jpg"
+             ondblclick="zoomImage(this)">
+
+    </div>
+
+    <br><br>
+
+    <!-- Submit Button -->
+
+    <button onclick="submitFeedback()">
+        Submit Feedback
+    </button>
+
+</div>
+
+<script>
+
+    // onblur Event
+    // Validate Phone Number
+
+    function validatePhone(){
+
+        let phone =
+            document.getElementById("phone").value;
+
+        let msg =
+            document.getElementById("phoneMsg");
+
+        let pattern = /^[0-9]{10}$/;
+
+        if(pattern.test(phone)){
+
+            msg.innerHTML =
+                "Valid Phone Number";
+
+            msg.style.color = "green";
+        }
+
+        else{
+
+            msg.innerHTML =
+                "Enter a valid 10-digit phone number";
+
+            msg.style.color = "red";
+        }
+    }
+
+    // onchange Event
+    // Display Event Fee
+
+    function showFee(){
+
+        let fee =
+            document.getElementById("eventSelect").value;
+
+        if(fee != ""){
+
+            document.getElementById("fee").innerHTML =
+                "Selected Event Fee: ₹" + fee;
+        }
+
+        else{
+
+            document.getElementById("fee").innerHTML = "";
+        }
+    }
+
+    // onclick Event
+    // Submit Confirmation
+
+    function submitFeedback(){
+
+        alert(
+            "Feedback Submitted Successfully!"
+        );
+    }
+
+    // ondblclick Event
+    // Enlarge Image
+
+    function zoomImage(img){
+
+        img.classList.toggle("zoom");
+    }
+
+    // Keyboard Event
+    // Count Characters
+
+    function countCharacters(){
+
+        let text =
+            document.getElementById("feedback").value;
+
+        document.getElementById("charCount").innerHTML =
+            "Characters: " + text.length;
+    }
+
+</script>
+
+</body>
+</html>

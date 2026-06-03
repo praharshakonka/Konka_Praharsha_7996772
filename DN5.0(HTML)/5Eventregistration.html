@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Registration Form</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f6ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 350px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 15px;
+        padding: 10px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #45a049;
+    }
+
+    output {
+        display: block;
+        margin-top: 15px;
+        padding: 10px;
+        background: #e6ffed;
+        border-left: 4px solid #2ecc71;
+        color: #2d6a4f;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <h2>Event Registration</h2>
+
+    <form onsubmit="showMessage(event)">
+        <!-- Name -->
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Enter your full name" autofocus required>
+
+        <!-- Email -->
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <!-- Date -->
+        <label>Date</label>
+        <input type="date" name="date" required>
+
+        <!-- Event Type -->
+        <label>Event Type</label>
+        <select name="event" required>
+            <option value="">-- Select Event --</option>
+            <option>Clean-Up Drive</option>
+            <option>Tree Plantation</option>
+            <option>Health Camp/option>
+            <option>Blood Donation</option>
+            <option>Sports Meet</option>
+            <option>Cultural Fest</option>
+
+        </select>
+
+        <!-- Message -->
+        <label>Message</label>
+        <textarea name="message" placeholder="Any additional details..." rows="4"></textarea>
+
+        <button type="submit">Register</button>
+
+        <!-- Output -->
+        <output id="result"></output>
+    </form>
+</div>
+
+<script>
+    function showMessage(event) {
+        event.preventDefault(); // stop page refresh
+
+        const name = document.querySelector('input[name="name"]').value;
+        const eventType = document.querySelector('select[name="event"]').value;
+
+        document.getElementById("result").value =
+            `Thank you ${name}! You have registered for ${eventType}.`;
+    }
+</script>
+
+</body>
+</html>

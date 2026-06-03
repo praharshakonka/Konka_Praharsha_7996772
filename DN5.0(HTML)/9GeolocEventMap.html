@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nearest Event Finder</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f0f4ff;
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .container {
+        width: 400px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    button {
+        padding: 10px;
+        width: 100%;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #45a049;
+    }
+
+    #output {
+        margin-top: 15px;
+        font-weight: bold;
+        color: #2c3e50;
+        line-height: 1.6;
+    }
+
+    .error {
+        color: red;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2> Find Nearby Events</h2>
+
+    <button onclick="findLocation()">Find Nearby Events</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+    function findLocation() {
+        const output = document.getElementById("output");
+
+        // Check if geolocation is supported
+        if (!navigator.geolocation) {
+            output.innerHTML = "<span class='error'>Geolocation not supported in your browser.</span>";
+            return;
+        }
+
+        // High accuracy options
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 10000,       // 10 seconds
+            maximumAge: 0
+        };
+
+        output.innerHTML = "Locating... ";
+
+        navigator.geolocation.getCurrentPosition(showPosition, showError, options);
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const acc = position.coords.accuracy;
+
+            output.innerHTML = `
+                Location Found! <br><br>
+                Latitude: ${lat} <br>
+                Longitude: ${lon} <br>
+                Accuracy: ${acc} meters <br><br>
+                Showing nearest events based on your location...
+            `;
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    output.innerHTML = "<span class='error'> User denied location access.</span>";
+                    break;
+
+                case error.TIMEOUT:
+                    output.innerHTML = "<span class='error'> Location request timed out.</span>";
+                    break;
+
+                case error.POSITION_UNAVAILABLE:
+                    output.innerHTML = "<span class='error'> Location unavailable.</span>";
+                    break;
+
+                default:
+                    output.innerHTML = "<span class='error'> Unknown error occurred.</span>";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

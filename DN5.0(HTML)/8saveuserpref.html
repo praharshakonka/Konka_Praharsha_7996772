@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Preferences</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f2f2f2;
+            padding:30px;
+        }
+
+        .container{
+            width:500px;
+            margin:auto;
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0 0 10px gray;
+        }
+
+        h2{
+            text-align:center;
+            color:#333;
+        }
+
+        label{
+            font-weight:bold;
+        }
+
+        select{
+            width:100%;
+            padding:10px;
+            margin-top:10px;
+            margin-bottom:20px;
+            border-radius:5px;
+        }
+
+        button{
+            padding:10px 20px;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            color:white;
+            font-size:16px;
+        }
+
+        .saveBtn{
+            background:green;
+        }
+
+        .clearBtn{
+            background:red;
+        }
+
+        #msg{
+            margin-top:20px;
+            font-weight:bold;
+            color:blue;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Event Preference Selection</h2>
+
+    <!-- Dropdown -->
+    <label>Select Preferred Event Type:</label>
+
+    <select id="eventType">
+        <option value="">--Select Event--</option>
+        <option value="Clean-Up Drive">Clean-Up Drive</option>
+        <option value="Tree Plantation">Tree Plantation</option>
+        <option value="Health Camp">Health Camp</option>
+        <option value="Health Camp">Blood Donation</option>
+        <option value="Sports Meet">Sports Meet</option>
+        <option value="Cultural Fest">Cultural Fest</option>
+    </select>
+
+    <!-- Buttons -->
+    <button class="saveBtn" onclick="savePreference()">
+        Save Preference
+    </button>
+
+    <button class="clearBtn" onclick="clearPreferences()">
+        Clear Preferences
+    </button>
+
+    <p id="msg"></p>
+
+</div>
+
+<script>
+
+    // Retrieve saved preference when page loads
+    window.onload = function() {
+
+        let savedEvent = localStorage.getItem("preferredEvent");
+
+        if(savedEvent){
+            document.getElementById("eventType").value = savedEvent;
+
+            document.getElementById("msg").innerHTML =
+                "Previously selected event loaded: " + savedEvent;
+        }
+    }
+
+    // Save preference in localStorage
+    function savePreference(){
+
+        let selectedEvent =
+            document.getElementById("eventType").value;
+
+        if(selectedEvent === ""){
+            alert("Please select an event.");
+            return;
+        }
+
+        // localStorage
+        localStorage.setItem("preferredEvent", selectedEvent);
+
+        // sessionStorage example
+        sessionStorage.setItem("sessionEvent", selectedEvent);
+
+        document.getElementById("msg").innerHTML =
+            "Preference saved successfully!";
+    }
+
+    // Clear localStorage and sessionStorage
+    function clearPreferences(){
+
+        localStorage.clear();
+        sessionStorage.clear();
+
+        document.getElementById("eventType").value = "";
+
+        document.getElementById("msg").innerHTML =
+            "All preferences cleared!";
+    }
+
+</script>
+
+</body>
+</html>
