@@ -1,0 +1,17 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+}
+#events {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.card {
+  border: 1px solid #333;
+  padding: 15px;
+  width: 200px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
