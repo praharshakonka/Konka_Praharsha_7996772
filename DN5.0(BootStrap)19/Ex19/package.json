@@ -1,0 +1,17 @@
+{
+  "name": "ex19",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "type": "commonjs",
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  },
+  "devDependencies": {
+    "sass": "^1.100.0"
+  }
+}
